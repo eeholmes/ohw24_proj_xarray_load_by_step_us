@@ -30,7 +30,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
-dependencies = ["ipykernel", "numpy", "xarray", "pydantic", "tqdm"]
+dependencies = ["ipykernel", "numpy", "xarray", "pydantic", "tqdm", "psutils"]
 
 [project.optional-dependencies]
 test = [
