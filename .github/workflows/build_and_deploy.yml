@@ -21,8 +21,6 @@ jobs:
 
     - name: Setup Mamba
       uses: mamba-org/setup-micromamba@v2
-      with:
-        environment-file: false
 
     - name: Build environment
       shell: bash -l {0}
