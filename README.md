@@ -27,7 +27,13 @@ timeout.
 
 `pip install load_by_step@git+https://github.com/oceanhackweek/ohw24_proj_xarray_load_by_step_us`
 
-## Planning
+## Build documentation
+
+```
+pip install sphinx_rtd_theme
+cd docs
+make html
+```
 
 ## Collaborators
 
@@ -36,25 +42,3 @@ timeout.
 | Marcelo Andrioni  | Bigelow  | Participant |
 | João Pedro Amorim | Bigelow  | Participant |
 
-## Planning
-
-- Initial idea: "short description"
-- Ideation jam board: Add link
-- Ideation Presentation: Add link
-- Slack channel: ohw24_proj_name
-- Project google drive: Add link
-- Final presentation: Add link
-
-## Background
-
-## Goals
-
-## Datasets
-
-## Workflow/Roadmap
-
-## Results/Findings
-
-## Lessons Learned
-
-## References
