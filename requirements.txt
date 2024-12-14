@@ -2,3 +2,4 @@ xarray
 pandas
 requests>=2.7
 psutil
+pydantic
