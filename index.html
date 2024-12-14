@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>load_by_step 0.1.dev74+g3bb6169 &mdash; load_by_step 0.1.dev74+g3bb6169 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=60dfc26d"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            load_by_step
+              <img src="_static/lds_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">load_by_step 0.1.dev74+g3bb6169</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#library-api">Library API</a></li>
+<li><a class="reference internal" href="#meta">Meta</a></li>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">load_by_step</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">load_by_step 0.1.dev74+g3bb6169</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="load-by-step-version">
+<h1>load_by_step 0.1.dev74+g3bb6169<a class="headerlink" href="#load-by-step-version" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://nwfsc-math-bio.github.io/pycax"><img alt="docs" src="https://github.com/nwfsc-math-bio/pycax/actions/workflows/deploy-docs.yml/badge.svg" /></a> <img alt="license" src="https://badgen.net/pypi/license/pycax-client/" /> <a class="reference external" href="https://github.com/nwfsc-math-bio/pycax"><img alt="source code" src="https://img.shields.io/badge/-Source%20code-61DAFB?logo=github&amp;logoColor=white&amp;style=flat" /></a> <a class="reference external" href="https://doi.org/10.5281/zenodo.7855729"><img alt="DOI" src="https://zenodo.org/badge/DOI/10.5281/zenodo.7855729.svg" /></a></p>
+<p>load_by_step is a Xarray accessor to download large quantities of data from THREDDS server automatically breaking a large request in smaller requests to avoid server timeout.</p>
+<p>The Xarray module is extensively used in the geosciences for its ability to handle multi-dimensional data, provide metadata support, and offer a wide range of analysis and visualization capabilities. Its intuitive interface and compatibility with other Python libraries make it a valuable tool for geoscientific research and data analysis. THREDDS servers are the “default” mode of serving a variety of important model hindcast/forecast and satellite data on the interet. Some examples:</p>
+<ul class="simple">
+<li><p>HYCOM</p></li>
+<li><p>NCEI</p></li>
+<li><p>NOMADS</p></li>
+</ul>
+<p>But if you are accessing data from a remote server like THREDDS, Hyrax, ERDDAP, etc, large requests (&gt; 100MB order of magnitude) can fail.  Due to the multitude of possible configuration options for these servers, the requests can even fail “silentlty”, that is, without raising an error. When this happens, the download seems to finish without problems, but in fact the data is full of NaN, zeros, or garbage values like 1e39. This can severely impact any subsequent workflows that depend on the data.</p>
+<p><strong>load_by_step solves this problem by splitting a large request in smaller requests internally and returns a single Dataset/DataArray to the user, all in a single line of code.</strong></p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>dev version</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install load_by_step@git+https://github.com/eeholmes/ohw24_proj_xarray_load_by_step_us</span>
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>user_guide <a class="reference external" href="https://github.com/eeholmes/examples/tree/main/notebooks">Jupyter notebook</a></p></li>
+</ul>
+</section>
+<section id="library-api">
+<h1>Library API<a class="headerlink" href="#library-api" title="Link to this heading"></a></h1>
+</section>
+<section id="meta">
+<h1>Meta<a class="headerlink" href="#meta" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>License: MIT</p></li>
+</ul>
+</section>
+<section id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Link to this heading"></a></h1>
+<p>MIT + addendum</p>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Alex Kerney.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
