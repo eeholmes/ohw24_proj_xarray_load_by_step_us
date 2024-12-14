@@ -6,7 +6,8 @@ build-backend = "hatchling.build"
 [project]
 name = "load_by_step"
 authors = [
-  { name = "Alex Kerney", email = "akerney@gmri.org" },
+  { name = "Marcelo Andrioni", email = "" },
+  { name = "João Pedro Amorim", email = "jpedroamorimo@gmail.com" }
 ]
 description = "A xarray accessor to retrieve large quantities of data from a THREDDS server splitting the request in smaller requests."
 readme = "README.md"
