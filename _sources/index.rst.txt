@@ -66,11 +66,11 @@ Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
-   hli
-   tables
-   datasets
-   changelog_link
+   Home <self>
+   notebooks/introduction
+   api
 
 License
 =======
